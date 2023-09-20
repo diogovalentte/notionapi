@@ -118,7 +118,7 @@ func (c Cursor) String() string {
 type Date time.Time
 
 func (d *Date) String() string {
-	return time.Time(*d).Format(time.RFC3339)
+	return time.Time(*d).Format("2006-01-02")
 }
 
 func (d Date) MarshalText() ([]byte, error) {
@@ -126,7 +126,7 @@ func (d Date) MarshalText() ([]byte, error) {
 }
 
 func (d *Date) UnmarshalText(data []byte) error {
-	t, err := time.Parse(time.RFC3339, string(data))
+	t, err := time.Parse("2006-01-02", string(data))
 
 	// Because the API does not distinguish between datetime with a
 	// timezone and dates, we eventually have to try both.
